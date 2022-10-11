@@ -5,13 +5,29 @@
     </h1>
 
     <div class="card">
+
         <div class="card-header">
-            <a href="{{ route('article.create') }}" class="btn btn-primary">
-                + Add article
-            </a>
-            <form class="float-right">
-                Search <input type="search" name="q">
-            </form>
+            <div class="row">
+                <a href="{{ route('article.create') }}" class="btn btn-primary">
+                    + Add article
+                </a>
+
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle ml-3" href="" style="height: 42px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lọc theo danh mục
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        @foreach($category as $key=>$category)
+                            <a class="dropdown-item" href="?category={{ $category->id }}">{{ $category->name }}</a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <form class="float-right">
+                    Search <input type="search" name="q">
+                </form>
+
+            </div>
         </div>
 
         <div class="card-body">
@@ -30,7 +46,7 @@
                         <td>{{ $Article->created_at }}</td>
                         <td>{{ $Article->status }}</td>
                         <td>{{ $Article->thumb }}</td>
-                        <td>{{ $Article->category_id }}</td>
+                        <td>{{ $Article->category->name }}</td>
                         <td style="display: flex">
                             <a href="" class="btn btn-info">Preview</a>
                             <a href="{{ route('article.edit',['article'=>$Article->id]) }}" class="btn btn-warning" style="margin: 0px 10px">Edit</a>

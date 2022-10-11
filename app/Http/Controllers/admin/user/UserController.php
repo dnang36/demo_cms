@@ -35,15 +35,24 @@ class UserController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $user = new User();
-        $user->name = $request->get('name');
-        $user->email=$request->get('email');
-        $user->password=Hash::make($request->input('password'));
-        $user->save();
 
-        Session::flash('success','tao user moi thanh cong');
+//        dd($request->input());
 
-        return redirect()->back();
+        $validate = $request->validated();
+
+        if ($validate){
+
+            $user = new User();
+            $user->name = $request->get('name');
+            $user->email=$request->get('email');
+            $user->password=Hash::make($request->input('password'));
+            $user->role = $request->get('role');
+            $user->save();
+
+            Session::flash('success','tao user moi thanh cong');
+
+            return redirect()->back();
+        }
     }
 
     public function destroy(User $user)
@@ -66,6 +75,7 @@ class UserController extends Controller
         $user->name = $request->get('name');
         $user->email=$request->get('email');
         $user->password=Hash::make($request->input('password'));
+        $user->role = $request->get('role');
         $user->save();
 
         Session::flash('success','cap nhat user thanh cong');

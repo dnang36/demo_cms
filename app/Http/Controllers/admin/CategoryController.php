@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function create()
     {
 //        $parent = category::query()->where('parent_id','=',0)->get();
-        $parent = tag::query()->get();
+        $parent = category::query()->get();
 
         return view('admin.category.create',[
             'title'=>'add category',

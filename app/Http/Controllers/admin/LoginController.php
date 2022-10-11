@@ -32,4 +32,10 @@ class LoginController extends Controller
         Session::flash('error','email hoac mk sai r');
         return redirect()->back();
     }
+
+    public function destroy()
+    {
+
+        return  redirect('/admin');
+    }
 }

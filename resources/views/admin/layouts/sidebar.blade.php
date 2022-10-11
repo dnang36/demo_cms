@@ -25,28 +25,10 @@
         <!--- Sidemenu -->
         <ul class="metismenu side-nav">
 
-            <li class="side-nav-title side-nav-item">Dashboards</li>
-
             <li class="side-nav-item">
-                <a href="javascript: void(0);" class="side-nav-link">
-                    <i class="uil-home-alt"></i>
-                    <span class="badge badge-success float-right">4</span>
+                <a href="{{ route('login.dashboard') }}" class="side-nav-link">
                     <span> Dashboards </span>
                 </a>
-                <ul class="side-nav-second-level" aria-expanded="false">
-                    <li>
-                        <a href="dashboard-analytics.html">Analytics</a>
-                    </li>
-                    <li>
-                        <a href="dashboard-crm.html">CRM</a>
-                    </li>
-                    <li>
-                        <a href="index.html">Ecommerce</a>
-                    </li>
-                    <li>
-                        <a href="dashboard-projects.html">Projects</a>
-                    </li>
-                </ul>
             </li>
 
             <li class="side-nav-title side-nav-item">FIRST-PARTY ADDONS</li>
@@ -133,10 +115,10 @@
                         <a href="{{ route('user.index') }}">Users</a>
                     </li>
                     <li>
-                        <a href="#">Roles</a>
+                        <a href="{{ route('role.index') }}">Roles</a>
                     </li>
                     <li>
-                        <a href="#">Permissions</a>
+                        <a href="{{ route('permisson.index') }}">Permissions</a>
                     </li>
                 </ul>
             </li>

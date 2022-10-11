@@ -4,6 +4,8 @@ use App\Http\Controllers\admin\ArticleController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\MainController;
+use App\Http\Controllers\admin\PermissonController;
+use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\admin\user\UserController;
 use Illuminate\Support\Facades\Route;
@@ -14,8 +16,10 @@ Route::prefix('admin')->group(function (){
     //auth
     Route::get('/',[LoginController::class,'index'])->name('login');
     Route::post('/store',[LoginController::class,'store'])->name('login.store');
+    Route::get('/destroy',[LoginController::class,'destroy'])->name('login.out');
 
     Route::middleware(['auth'])->group(function (){
+        //dashboard
         Route::get('/dashboard',[MainController::class,'index'])->name('login.dashboard');
 
         //users
@@ -26,6 +30,20 @@ Route::prefix('admin')->group(function (){
             Route::delete('/destroy/{user}',[UserController::class,'destroy'])->name('user.destroy');
             Route::get('/edit/{user}',[UserController::class,'edit'])->name('user.edit');
             Route::put('/edit/{user}',[UserController::class,'update'])->name('user.update');
+        });
+        //permisson
+        Route::prefix('permissons')->group(function (){
+            Route::get('/',[PermissonController::class,'index'])->name('permisson.index');
+            Route::get('/create',[PermissonController::class,'create'])->name('permisson.create');
+            Route::post('/create',[PermissonController::class,'store'])->name('permisson.store');
+            Route::get('/edit/{permisson}',[PermissonController::class,'edit'])->name('permisson.edit');
+            Route::put('/edit/{permisson}',[PermissonController::class,'update'])->name('permisson.update');
+            Route::delete('/destroy/{permisson}',[PermissonController::class,'destroy'])->name('permisson.destroy');
+        });
+
+        //role
+        Route::prefix('roles')->group(function (){
+            Route::get('/',[RoleController::class,'index'])->name('role.index');
         });
 
         //tag

@@ -25,15 +25,17 @@ class StoreRequest extends FormRequest
             ],
             'password'=>[
                 'bail',
-                'required'
-            ]
+                'required',
+                'confirmed'
+            ],
         ];
     }
 
     public function messages():array
     {
         return [
-            'required' =>':attribute bat buoc phai dien'
+            'required' =>':attribute bat buoc phai dien',
+            'confirmed'=>':attribute nhap chua chinh xac'
         ];
     }
 

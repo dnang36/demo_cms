@@ -2,8 +2,10 @@
 
 namespace App\Models\admin;
 
+use App\Http\Controllers\admin\CategoryController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class article extends Model
 {
@@ -17,6 +19,11 @@ class article extends Model
         'category_id',
         'description',
         'content',
-        'status'
+        'status',
     ];
+
+    public function category():BelongsTo
+    {
+        return $this->belongsTo(category::class,'category_id');
+    }
 }

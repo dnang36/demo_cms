@@ -14,12 +14,17 @@ class ArticleController extends Controller
     {
         $search = $request->get('q');
 
+        $category = category::query()->get();
+
         $article = article::query()->where('title','like','%'.$search.'%')->orderByDesc('id')->paginate(5);
+
+//        $article1 = article::query()->where('category_id','=e','%'.$search.'%')->orderByDesc('id')->paginate(5);
 
         return view('admin.article.index',[
             'title'=>'article list',
             'search'=>$search,
             'article'=>$article,
+            'category'=>$category,
         ]);
     }
 

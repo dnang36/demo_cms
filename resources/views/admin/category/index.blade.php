@@ -28,7 +28,7 @@
                     <tr>
                         <td>{{ $Category->name }}</td>
                         <td>{{ $Category->slug }}</td>
-                        <td>{{ $Category->getname }}</td>
+                        <td>{{ $Category->parent_id }}</td>
                         <td></td>
                         <td>{{ $Category->created_at }}</td>
                         <td style="display: flex">

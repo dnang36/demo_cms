@@ -11,7 +11,7 @@ use App\Http\Controllers\admin\user\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-
+//admin
 Route::prefix('admin')->group(function (){
     //auth
     Route::get('/',[LoginController::class,'index'])->name('login');
@@ -21,7 +21,8 @@ Route::prefix('admin')->group(function (){
     Route::middleware(['auth'])->group(function (){
         //dashboard
         Route::get('/dashboard',[MainController::class,'index'])->name('login.dashboard');
-
+        //logs
+        Route::get('/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('admin.log');
         //users
         Route::prefix('users')->group(function (){
             Route::get('/',[UserController::class,'index'])->name('user.index');
@@ -30,6 +31,14 @@ Route::prefix('admin')->group(function (){
             Route::delete('/destroy/{user}',[UserController::class,'destroy'])->name('user.destroy');
             Route::get('/edit/{user}',[UserController::class,'edit'])->name('user.edit');
             Route::put('/edit/{user}',[UserController::class,'update'])->name('user.update');
+
+            //add role
+            Route::get('/usersrole/{user}',[UserController::class,'addrole'])->name('user.addrole');
+            Route::post('/usersrole/{user}',[UserController::class,'insertrole'])->name('user.insertrole');
+
+            //add permisson
+            Route::get('/userpermisson/{user}',[UserController::class,'addpermisson'])->name('user.addpermisson');
+            Route::post('/userpermisson/{user}',[UserController::class,'insertpermisson'])->name('user.insertpermisson');
         });
         //permisson
         Route::prefix('permissons')->group(function (){
@@ -44,6 +53,11 @@ Route::prefix('admin')->group(function (){
         //role
         Route::prefix('roles')->group(function (){
             Route::get('/',[RoleController::class,'index'])->name('role.index');
+            Route::get('/create',[RoleController::class,'create'])->name('role.create');
+            Route::post('/create',[RoleController::class,'store'])->name('role.store');
+            Route::delete('/destroy/{role}',[RoleController::class,'destroy'])->name('role.destroy');
+            Route::get('/edit/{role}',[RoleController::class,'edit'])->name('role.edit');
+            Route::put('/edit/{role}',[RoleController::class,'update'])->name('role.update');
         });
 
         //tag
@@ -78,5 +92,10 @@ Route::prefix('admin')->group(function (){
         });
     });
 
+});
 
+//client
+Route::prefix('/')->group(function (){
+
+    Route::get('/',[MainController::class,'test'])->name('main.test');
 });

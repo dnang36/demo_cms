@@ -31,17 +31,25 @@
                     <label for="password">Confirm Password</label>
                     <input type="password" id="password" name="password_confirmation" class="form-control">
                 </div>
-                Role
-                <div class="mt-2">
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="customRadio5" name="role" value="0" class="custom-control-input" checked>
-                        <label class="custom-control-label" for="customRadio5">User</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="customRadio6" name="role" value="1" class="custom-control-input">
-                        <label class="custom-control-label" for="customRadio6">Admin</label>
-                    </div>
-                </div>
+                <label for="role">Role</label>
+                    @foreach($role as $role)
+                            <div class="mt-2">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="{{ $role->id }}" name="role" class="custom-control-input" value="{{ $role->name }}">
+                                    <label class="custom-control-label" for="{{ $role->id }}">{{ $role->name }}</label>
+                                </div>
+                            </div>
+                        @endforeach
+                <br>
+{{--                <label for="permisson">Permission</label>--}}
+{{--                    @foreach($permisson as $per)--}}
+{{--                            <div class="mt-3">--}}
+{{--                                <div class="custom-control custom-checkbox">--}}
+{{--                                    <input type="checkbox" class="custom-control-input" name="permisson" id="{{ $per->id }}">--}}
+{{--                                    <label class="custom-control-label" for="{{ $per->id }}">{{ $per->name }}</label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
                 <br>
                 <button class="btn btn-success">Save and back</button>
             </form>

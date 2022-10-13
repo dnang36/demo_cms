@@ -21,6 +21,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
+                    <th>Permisson</th>
                     <th>Action</th>
                 </tr>
 
@@ -29,12 +30,19 @@
                         <td>{{ $User->name }}</td>
                         <td>{{ $User->email }}</td>
 {{--                        <td>{{ $User->role }}</td>--}}
-                        @if( $User->role ===0)
-                            <td>User</td>
-                        @else
-                            <td>Admin</td>
-                        @endif
+                        <td>
+                            @foreach($User->roles as $key=>$role)
+                                {{ $role->name }}
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach($role->permissions as $key=>$permissions)
+                                <h4> <span class="badge badge-info"> {{ $permissions->name }}</span> </h4>
+                            @endforeach
+                        </td>
                         <td style="display: flex">
+                            <a href="{{ route('user.addrole',['user'=>$User->id]) }}" class="btn btn-success">Add role</a>
+                            <a href="{{ route('user.addpermisson',['user'=>$User->id]) }}" class="btn btn-secondary" style="margin: 0 10px">Add permisson</a>
                             <a href="{{ route('user.edit',['user'=>$User->id]) }}" class="btn btn-warning">
                                 Edit
                             </a>

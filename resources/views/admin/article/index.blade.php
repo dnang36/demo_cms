@@ -17,17 +17,18 @@
                         Lọc theo danh mục
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        @foreach($category as $key=>$category)
+                        @foreach($categories as $key=>$category)
                             <a class="dropdown-item" href="?category={{ $category->id }}">{{ $category->name }}</a>
                         @endforeach
                     </div>
                 </div>
 
-                <form class="float-right">
-                    Search <input type="search" name="q">
-                </form>
+
 
             </div>
+            <form class="float-right">
+                Search <input type="search" name="q">
+            </form>
         </div>
 
         <div class="card-body">

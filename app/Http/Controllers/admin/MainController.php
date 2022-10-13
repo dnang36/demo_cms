@@ -26,4 +26,9 @@ class MainController extends Controller
             'users'=>$user,
         ]);
     }
+
+    public function test()
+    {
+        return view('client.layouts.master');
+    }
 }

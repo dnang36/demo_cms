@@ -1,12 +1,9 @@
 <div class="left-side-menu">
 
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-light">
+    <a href="{{ route('login.dashboard') }}" class="logo text-center">
                     <span class="logo-lg">
-                        <img src="assets/images/logo.png" alt="" height="16">
-                    </span>
-        <span class="logo-sm">
-                        <img src="assets/images/logo_sm.png" alt="" height="16">
+                        <img src="{{ 'img.123dock.png' }}" alt="" height="16">
                     </span>
     </a>
 
@@ -132,16 +129,7 @@
                 </a>
                 <ul class="side-nav-second-level" aria-expanded="false">
                     <li>
-                        <a href="#">File Manager</a>
-                    </li>
-                    <li>
-                        <a href="#">Logs</a>
-                    </li>
-                    <li>
-                        <a href="#">Backups</a>
-                    </li>
-                    <li>
-                        <a href="#">Setting</a>
+                        <a href="{{ route('admin.log') }}">Logs</a>
                     </li>
                 </ul>
             </li>

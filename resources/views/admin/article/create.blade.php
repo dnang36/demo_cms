@@ -1,4 +1,9 @@
 @extends('admin.layouts.master')
+
+@section('head')
+    <script src="/ckeditor/ckeditor.js"></script>
+@endsection
+
 @section('content')
     <h1>
         Add Article
@@ -28,7 +33,7 @@
 
                 <div class="form-group">
                     <label for="example-textarea">Content</label>
-                    <textarea class="form-control" id="example-textarea" name="content" rows="5"></textarea>
+                    <textarea class="form-control" id="content" name="content" rows="5"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -42,6 +47,16 @@
                         <option value="0">-</option>
                         @foreach($category as $Category)
                             <option value="{{ $Category->id }}">{{ $Category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="parent">Tag</label>
+                    <select class="custom-select mb-3" name="tag_id">
+                        <option value="0">-</option>
+                        @foreach($tags as $tags)
+                            <option value="{{ $tags->id }}">{{ $tags->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -67,4 +82,11 @@
     </div>
 
     <script language="javascript" src="{{ asset('js/generateslug.js') }}"></script>
+@endsection
+
+
+@section('footer')
+    <script>
+        CKEDITOR.replace( 'content' );
+    </script>
 @endsection

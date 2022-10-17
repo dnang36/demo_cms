@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\admin\article;
 use App\Models\admin\category;
+use App\Models\admin\tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -15,17 +16,22 @@ class ArticleController extends Controller
         $search = $request->get('q');
 
         $categories = category::query()->get();
+        $tags = tag::query()->get();
         $query = article::query();
 
         if ($category = $request->get('category')) {
             $query->where('category_id', $category);
         }
 
+        if ($tag = $request->get('tag')){
+            $query->where('tag_id',$tag);
+        }
+
         if ($search){
             $query->where('title','like','%'.$search.'%');
         }
 
-        $article = $query->paginate(5);
+        $article = $query->orderByDesc('id')->paginate(5);
 //        $article1 = article::query()->where('category_id','=e','%'.$search.'%')->orderByDesc('id')->paginate(5);
 
         return view('admin.article.index',[
@@ -33,16 +39,19 @@ class ArticleController extends Controller
             'search'=>$search,
             'article'=>$article,
             'categories'=>$categories,
+            'tags'=>$tags,
         ]);
     }
 
     public function create()
     {
         $category = category::query()->get();
+        $tags = tag::query()->get();
 
         return view('admin.article.create',[
             'title'=>'add article',
             'category'=>$category,
+            'tags'=>$tags,
         ]);
     }
 
@@ -67,11 +76,13 @@ class ArticleController extends Controller
     public function edit(article $article)
     {
         $category = category::query()->where('parent_id','id')->get();
+        $tags = tag::query()->get();
 
         return view('admin.article.edit',[
             'title'=>'edit article',
             'article'=>$article,
-            'category'=>$category
+            'category'=>$category,
+            'tags'=>$tags,
         ]);
     }
 

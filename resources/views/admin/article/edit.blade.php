@@ -1,4 +1,9 @@
 @extends('admin.layouts.master')
+
+@section('head')
+    <script src="/ckeditor/ckeditor.js"></script>
+@endsection
+
 @section('content')
     <h1>
         Edit Article
@@ -47,6 +52,17 @@
                     </select>
                 </div>
 
+
+                <div class="form-group">
+                    <label for="parent">Tag</label>
+                    <select class="custom-select mb-3" name="tag_id">
+                        <option value="0">-</option>
+                        @foreach($tags as $tags)
+                            <option value="{{ $tags->id }}">{{ $tags->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <div class="mt-2">
                         Status:
@@ -68,4 +84,10 @@
     </div>
 
     <script language="javascript" src="{{ asset('js/generateslug.js') }}"></script>
+@endsection
+
+@section('footer')
+    <script>
+        CKEDITOR.replace( 'content' );
+    </script>
 @endsection

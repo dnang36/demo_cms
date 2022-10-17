@@ -98,14 +98,14 @@ class UserController extends Controller
         $user = User::query()->find($id);
 //        $name_role = $user->roles->first()->name;
         $role = roles::query()->orderByDesc('id')->get();
-//        $all_clm_role = $user->roles->first();
+        $all_clm_role = $user->roles->first();
 
         return view('admin.users.addrole',[
             'title'=>'Add role for User',
             'user'=>$user,
 //            'name_role'=>$name_role,
             'role'=>$role,
-//            'all_clm_role'=>$all_clm_role,
+            'all_clm_role'=>$all_clm_role,
         ]);
     }
 

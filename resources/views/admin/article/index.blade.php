@@ -1,4 +1,6 @@
 @extends('admin.layouts.master')
+
+
 @section('content')
     <h1>
         Articles List
@@ -23,7 +25,16 @@
                     </div>
                 </div>
 
-
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle ml-3" href="" style="height: 42px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lọc theo tag
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        @foreach($tags as $key=>$tag)
+                            <a class="dropdown-item" href="?tag={{ $tag->id }}">{{ $tag->name }}</a>
+                        @endforeach
+                    </div>
+                </div>
 
             </div>
             <form class="float-right">
@@ -39,6 +50,7 @@
                     <th>Status</th>
                     <th>Thumb</th>
                     <th>Category</th>
+                    <th>Tag</th>
                     <th>Action</th>
                 </tr>
                 @foreach($article as $Article)
@@ -48,6 +60,7 @@
                         <td>{{ $Article->status }}</td>
                         <td>{{ $Article->thumb }}</td>
                         <td>{{ $Article->category->name }}</td>
+                        <td>{{ $Article->tag->name }}</td>
                         <td style="display: flex">
                             <a href="" class="btn btn-info">Preview</a>
                             <a href="{{ route('article.edit',['article'=>$Article->id]) }}" class="btn btn-warning" style="margin: 0px 10px">Edit</a>
@@ -71,3 +84,4 @@
         </div>
     </div>
 @endsection
+

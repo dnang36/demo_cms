@@ -13,4 +13,6 @@
             </div>
         </div>
     </div>
+
+    @yield('footer')
 </footer>

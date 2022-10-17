@@ -20,10 +20,16 @@ class article extends Model
         'description',
         'content',
         'status',
+        'tag_id',
     ];
 
     public function category():BelongsTo
     {
         return $this->belongsTo(category::class,'category_id');
+    }
+
+    public function tag():BelongsTo
+    {
+        return $this->belongsTo(tag::class,'tag_id');
     }
 }

@@ -57,7 +57,19 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->has('file')){
+            $file = $request->file;
+            $ex = $request->file->extension();
+            $file_name = time().'-'.'img'.'.'.$ex;
+//            dd($file_name);
+            $file->move(public_path('img'),$file_name);
+        }
+
+        $request->merge(['thumb'=>$file_name]);
+//        dd($request->all());
+
         $article = new article();
+
         $article->fill($request->except('_token'));
         $article->save();
 

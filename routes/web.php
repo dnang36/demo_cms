@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\PermissonController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\TagController;
 use App\Http\Controllers\admin\user\UserController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -97,5 +98,6 @@ Route::prefix('admin')->group(function (){
 //client
 Route::prefix('/')->group(function (){
 
-    Route::get('/',[MainController::class,'test'])->name('main.test');
+    Route::get('/',[HomeController::class,'index'])->name('main.index');
+    Route::get('/login',[HomeController::class,'test1'])->name('main.login');
 });

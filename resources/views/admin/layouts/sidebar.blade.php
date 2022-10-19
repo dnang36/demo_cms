@@ -10,10 +10,10 @@
     <!-- LOGO -->
     <a href="index.html" class="logo text-center logo-dark">
                     <span class="logo-lg">
-                        <img src="{{ asset('img/123dok.png') }}" alt="" height="16">
+                        <img src="http://demo_cms.test/public/img//123dok.png" alt="" height="16px">
                     </span>
         <span class="logo-sm">
-                        <img src="" alt="" height="16">
+                        <img src="http://demo_cms.test/public/img//123dok.png" alt="" height="16">
                     </span>
     </a>
 

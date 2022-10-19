@@ -12,7 +12,7 @@
     <div class="card">
 
         <div class="card-body">
-            <form action="{{ route('article.store') }}" method="post">
+            <form action="{{ route('article.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" id="author_id" name="author_id" value="1" class="form-control">
 
@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <label for="example-textarea">Thumbnail</label>
-                    <input type="file" id="thumb" name="thumb" class="form-control">
+                    <input type="file" id="thumb" name="file" class="form-control">
                 </div>
 
                 <div class="form-group">

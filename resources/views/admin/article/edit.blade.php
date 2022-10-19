@@ -12,7 +12,7 @@
     <div class="card">
 
         <div class="card-body">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <input type="hidden" id="author_id" name="author_id" value="1" class="form-control">

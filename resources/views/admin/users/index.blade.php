@@ -6,10 +6,11 @@
 
     <div class="card">
         <div class="card-header">
+            @can('User Manager')
             <a href="{{ route('user.create') }}" class="btn btn-primary">
                 + Add User
             </a>
-
+            @endcan
             <form class="float-right">
                 Search <input type="search" name="q" value="{{ $search }}">
             </form>
@@ -41,6 +42,7 @@
                             @endforeach
                         </td>
                         <td style="display: flex">
+                            @can('User Manager')
                             <a href="{{ route('user.addrole',['user'=>$User->id]) }}" class="btn btn-success">Add role</a>
                             <a href="{{ route('user.addpermisson',['user'=>$User->id]) }}" class="btn btn-secondary" style="margin: 0 10px">Add permisson</a>
                             <a href="{{ route('user.edit',['user'=>$User->id]) }}" class="btn btn-warning">
@@ -51,6 +53,7 @@
                                 @method('DELETE')
                                 <button class="btn btn-danger">Delete</button>
                             </form>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

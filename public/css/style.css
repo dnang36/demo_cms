@@ -196,7 +196,7 @@ a{
 }
 
 .slide{
-    background-image: url('../image/slider.png');
+    background-image: url('http://demo_cms.test/public/img//slider.png');
     background-size: 100%;
     width: 80%;
     height: 390px;

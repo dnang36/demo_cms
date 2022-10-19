@@ -5,10 +5,11 @@
     </h1>
     <div class="card">
         <div class="card-header">
+            @if(auth()->user()->can('Category Manager') || auth()->user()->can('User Manager'))
             <a href="{{ route('category.create') }}" class="btn btn-primary">
                 + Add Category
             </a>
-
+            @endif
             <form action="" class="float-right">
                     Search <input type="search" id="search" name="q" value="{{ $search }}">
             </form>
@@ -32,6 +33,7 @@
                         <td></td>
                         <td>{{ $Category->created_at }}</td>
                         <td style="display: flex">
+                            @if(auth()->user()->can('Category Manager') || auth()->user()->can('User Manager'))
                             <a href="" class="btn btn-info">Preview</a>
                             <a href="{{ route('category.edit',['category'=>$Category->id]) }}" class="btn btn-warning" style="margin: 0px 10px">Edit</a>
                             <form action="{{ route('category.destroy',['category'=>$Category->id]) }}" method="post">
@@ -39,6 +41,7 @@
                                 @method('DELETE')
                                 <button class="btn btn-danger">Delete</button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

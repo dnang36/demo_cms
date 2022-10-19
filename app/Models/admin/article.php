@@ -25,11 +25,11 @@ class article extends Model
 
     public function category():BelongsTo
     {
-        return $this->belongsTo(category::class,'category_id');
+        return $this->belongsTo(category::class,'category_id',)->withDefault(['name'=>'']);
     }
 
     public function tag():BelongsTo
     {
-        return $this->belongsTo(tag::class,'tag_id');
+        return $this->belongsTo(tag::class,'tag_id')->withDefault(['name'=>'']);
     }
 }

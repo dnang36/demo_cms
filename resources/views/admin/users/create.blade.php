@@ -35,7 +35,7 @@
                     @foreach($role as $role)
                             <div class="mt-2">
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="{{ $role->id }}" name="role" class="custom-control-input" value="{{ $role->name }}">
+                                    <input type="radio" id="{{ $role->id }}" name="role" class="custom-control-input" value="{{ $role->name }}" checked>
                                     <label class="custom-control-label" for="{{ $role->id }}">{{ $role->name }}</label>
                                 </div>
                             </div>

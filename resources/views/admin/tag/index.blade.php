@@ -5,7 +5,9 @@
     </h1>
     <div class="card">
         <div class="card-header">
+            @if(auth()->user()->can('Tag Manager') || auth()->user()->can('User Manager'))
             <a href="{{ route('tag.create') }}" class="btn btn-primary">+ Add tag</a>
+            @endif
             <form class="float-right">
                 Search: <input type="search" name="q" value="{{ $search }}" >
             </form>
@@ -26,6 +28,7 @@
                         <td>{{ $Tag->slug }}</td>
                         <td>{{ $Tag->created_at }}</td>
                         <td style="display: flex">
+                            @if(auth()->user()->can('Tag Manager') || auth()->user()->can('User Manager'))
                             <a href="{{ route('tag.edit',['tag'=>$Tag->id]) }}" class="btn btn-warning">
                                 Edit
                             </a>
@@ -35,6 +38,7 @@
                                 @method('DELETE')
                                 <button class="btn btn-danger">Delete</button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

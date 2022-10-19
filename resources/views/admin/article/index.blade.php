@@ -10,9 +10,11 @@
 
         <div class="card-header">
             <div class="row">
+                @if(auth()->user()->can('Article Manager') || auth()->user()->can('User Manager'))
                 <a href="{{ route('article.create') }}" class="btn btn-primary">
                     + Add article
                 </a>
+                @endif
 
                 <div class="dropdown show">
                     <a class="btn btn-secondary dropdown-toggle ml-3" href="" style="height: 42px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,10 +60,12 @@
                         <td>{{ $Article->title }}</td>
                         <td>{{ $Article->created_at }}</td>
                         <td>{{ $Article->status }}</td>
-                        <td>{{ $Article->thumb }}</td>
+{{--                        <td>{{ url('public/img') }}/{{ $Article->thumb }}</td>--}}
+                        <td><img src="http://demo_cms.test/public/img/{{ $Article->thumb }}"  height="60px"></td>
                         <td>{{ $Article->category->name }}</td>
                         <td>{{ $Article->tag->name }}</td>
                         <td style="display: flex">
+                            @if(auth()->user()->can('Article Manager') || auth()->user()->can('User Manager'))
                             <a href="" class="btn btn-info">Preview</a>
                             <a href="{{ route('article.edit',['article'=>$Article->id]) }}" class="btn btn-warning" style="margin: 0px 10px">Edit</a>
                             <form action="{{ route('article.destroy',['article'=>$Article->id])  }}" method="post">
@@ -69,6 +73,7 @@
                                 @method('DELETE')
                                 <button class="btn btn-danger">Delete</button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

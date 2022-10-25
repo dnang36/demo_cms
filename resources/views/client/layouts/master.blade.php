@@ -215,7 +215,7 @@
                         <p class="cnt-day">24/02/2020</p>
                     </div>
                     <p class="li-chinh">
-                        {{ $arti->content }}
+                        {{ $arti->description }}
                     </p>
                 </div>
                 <img src="http://demo_cms.test/public/img/{{ $arti->thumb }}" alt="anh loi" class="img-list">

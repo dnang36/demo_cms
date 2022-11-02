@@ -61,7 +61,7 @@
                         <td>{{ $Article->created_at }}</td>
                         <td>{{ $Article->status }}</td>
 {{--                        <td>{{ url('public/img') }}/{{ $Article->thumb }}</td>--}}
-                        <td><img src="http://demo_cms.test/public/img/{{ $Article->thumb }}"  height="60px"></td>
+                        <td><img src="{{ $Article->thumb }}"  height="60px"></td>
                         <td>{{ $Article->category->name }}</td>
                         <td>{{ $Article->tag->name }}</td>
                         <td style="display: flex">

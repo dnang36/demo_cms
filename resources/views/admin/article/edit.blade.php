@@ -40,6 +40,7 @@
                 <div class="form-group">
                     <label for="example-textarea">Thumbnail</label>
                     <input type="file" id="thumb" name="thumb" class="form-control" value="{{ $article->thumb }}">
+                    <img src="{{$article->thumb}}" alt="" style="height: 90px">
                 </div>
 
                 <div class="form-group">

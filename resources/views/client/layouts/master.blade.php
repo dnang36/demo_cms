@@ -12,7 +12,7 @@
         <a href="#" class="menu-item" style="border-bottom-style:solid;border-bottom-color:#D93C23;border-radius: 1px;opacity:1">Blog</a>
     </div>
     <div class="header-logo">
-        <img src="http://demo_cms.test/public/img/123dok.png" alt="" class="logo-image">
+        <img src="{{ asset('img/123dok.png') }}" alt="" class="logo-image">
     </div>
     <div class="header-user">
         <img src="images/Notification.png" alt="" class="logo-icon2">
@@ -45,7 +45,7 @@
 
 <div class="slider">
     <div class="slide">
-        <img src="http://demo_cms.test/public/img/123dok.png" alt="" class="logo-slider">
+        <img src="{{ asset('img/123dok.png') }}" alt="" class="logo-slider">
     </div>
 </div>
 
@@ -218,7 +218,7 @@
                         {{ $arti->description }}
                     </p>
                 </div>
-                <img src="http://demo_cms.test/public/img/{{ $arti->thumb }}" alt="anh loi" class="img-list">
+                <img src="{{ $arti->thumb }}" alt="anh loi" class="img-list">
             </a>
             @endforeach
         </div>

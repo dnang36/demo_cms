@@ -31,4 +31,9 @@ class tag extends Model
         'name',
         'slug',
     ];
+
+    public function articles()
+    {
+        return $this->hasMany(article::class,'tag_id');
+    }
 }

@@ -57,7 +57,6 @@
                 </div>
             </form>
 
-
         </div>
     </div>
     <p class="mb-1">
@@ -65,7 +64,6 @@
     </p>
 
 </div>
-
 
 <script src="../../plugins/jquery/jquery.min.js"></script>
 

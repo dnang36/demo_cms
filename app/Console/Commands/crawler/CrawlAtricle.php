@@ -5,8 +5,10 @@ namespace App\Console\Commands\crawler;
 use App\Libs\CrawlerHelper;
 use App\Models\admin\article;
 use App\Models\admin\category;
+use App\Models\admin\tag;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\DomCrawler\Crawler;
 
 class CrawlAtricle extends Command
@@ -24,9 +26,10 @@ class CrawlAtricle extends Command
             $articleUrl = $this->getArticleUrl($category);
             foreach ($articleUrl as $url){
                 try {
-                    $this->info("url: $url");
                     $data = $this->getArticles($url);
-
+//                    dd($data);
+//                    $tags = $this->getTag($url);
+                    $this->info("url: $url");
                     $category = category::firstOrCreate([
                         'name'=>$data['category_id']],[
                             'slug'=>str_slug($data['category_id']),
@@ -35,6 +38,12 @@ class CrawlAtricle extends Command
                             'content'=>$data['category_id'],
                         ]);
                     $this->info("cate: $category->name");
+
+                    $tag = tag::firstOrCreate([
+                        'name'=>$data['tag_id'],
+                    ],[
+                        'slug' => str_slug($data['tag_id']),
+                    ]);
 
                     article::firstOrCreate([
                         'slug'=>$data['slug'],
@@ -46,8 +55,10 @@ class CrawlAtricle extends Command
                         'content' => $data['content'],
                         'category_id'=>$category->id,
                         'status' => 0,
+                        'tag_id'=>$tag->id,
                     ]);
                     article::create($data);
+
                 }
                 catch (\Exception $err){
                     continue;
@@ -85,21 +96,28 @@ class CrawlAtricle extends Command
         $thumb = $crawler->filter('.fig-picture img')->attr('data-src');
         $content = $crawler->filter('article.fck_detail')->text();
         $category_id = $crawler->filter('ul.breadcrumb li a')->text();
+        $tag_name = $this->getTag($url);
+        foreach ($tag_name as $tag){
+            $tag_id = $tag;
+        }
         $status = 0;
 
-        return compact('title', 'slug', 'description', 'content', 'thumb','status','category_id');
+        return compact('title', 'slug', 'description', 'content', 'thumb','status','category_id','tag_id');
     }
 
     public function getTag($url)
     {
-        $client = new Client();
-        $response = $client->request('GET', $url);
-        $html = $response->getBody()->getContents();
+        $html = (new Client([
+            'verify' => false,
+            'timeout' => 30, // 30 seconds
+        ]))->get($url)
+            ->getBody()->getContents();
 
-        $crawler = new Crawler($html);
+        $dom_crawler = new Crawler();
+        $dom_crawler->addHtmlContent($html);
 
-        $tag = $crawler->filterXpath("//meta[@name='its_tag']")->extract(array('content'));;
-        $tag = explode(', ',$tag[0]);
+        $tags = $dom_crawler->filterXpath("//meta[@name='its_tag']")->extract(array('content'));
+        return explode(', ', $tags[0]);
     }
 
     protected function getHtml(string $url): string

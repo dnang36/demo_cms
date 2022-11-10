@@ -222,12 +222,24 @@ a{
     margin-top: 10px;
 }
 
-.nav{
+.nav .menu_body {
+    min-height: 39px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+}
+
+.nav .menu_body::-webkit-scrollbar {
+
+}
+
+.nav::-webkit-scrollbar{
     margin: 36px auto;
     display: flex;
     justify-content: space-between;
     width: 100%;
-
+    overflow-x: auto;
 }
 
 .nav-item{
@@ -453,6 +465,7 @@ a{
 .video-title{
     display: flex;
     justify-content: space-between;
+    margin-top: 100px;
 }
 
 .v-head{

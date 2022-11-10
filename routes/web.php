@@ -99,5 +99,7 @@ Route::prefix('admin')->group(function (){
 Route::prefix('/')->group(function (){
 
     Route::get('/',[HomeController::class,'index'])->name('main.index');
-    Route::get('/login',[HomeController::class,'test1'])->name('main.login');
+    Route::get('/login',[HomeController::class,'login'])->name('main.login');
+    Route::post('/store',[HomeController::class,'store'])->name('main.store');
+    Route::get('/article/{article}',[HomeController::class,'detail'])->name('main.detail');
 });

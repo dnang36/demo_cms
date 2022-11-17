@@ -17,10 +17,10 @@
     <div class="header-user">
         <img src="images/Notification.png" alt="" class="logo-icon2">
         <img src="./images/icon.png" alt="" class="logo-icon">
-        <a href="{{ route('main.login') }}" class="btn">Đăng Bài</a>
+        <a href="{{ route('main.login') }}" class="btn">Đăng Nhap</a>
 
         <div class="user">
-            <div class="name">Nguyễn Đoàn Đăng</div>
+            <div class="name">{{$users->name}}</div>
             <div class="name-des">Intern</div>
         </div>
         <img src="./images/user.png" alt="" class="user-img">

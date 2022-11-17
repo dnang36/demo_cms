@@ -16,10 +16,10 @@
     <div class="header-user">
         <img src="images/Notification.png" alt="" class="logo-icon2">
         <img src="./images/icon.png" alt="" class="logo-icon">
-        <a href="{{ route('main.login') }}" class="btn">Đăng Bài</a>
+        <a href="{{ route('main.login') }}" class="btn">Đăng Nhap</a>
 
         <div class="user">
-            <div class="name">Nguyễn Đoàn Đăng</div>
+            <div class="name">{{ $users->name }}</div>
             <div class="name-des">Intern</div>
         </div>
         <img src="./images/user.png" alt="" class="user-img">
@@ -78,21 +78,26 @@
                 <a href="{{ route('main.detail',['article'=>$article->id]) }}" class="tin-dir">Xem tất cả</a>
             </div>
         </div>
+        @foreach($article_list as $list)
+
         <a href="{{ route('main.detail',['article'=>$article->id]) }} " class="li-detail">
-                <div class="li-des">
-                    <p class="list-title">{{ $article->title }}</p>
+            <div class="li-des">
+                    <p class="list-title">{{ $list->title }}</p>
                     <div class="cnt-des">
-                        <p class="xa-hoi">{{ $article->category->name }}</p>
+                        <p class="xa-hoi">{{ $list->category->name }}</p>
                         <p class="cnt-dot"></p>
                         <p class="cnt-name">Nguyễn Đoàn Đăng</p>
                         <p class="cnt-dot"></p>
-                        <p class="cnt-day">{{ $article->created_at }}</p>
+                        <p class="cnt-day">{{ $list->created_at }}</p>
                     </div>
                     <p class="li-chinh">
-                        {{ $article->description }}
+                        {{ $list->description }}
                     </p>
                 </div>
-                <img src="{{ $article->thumb }}" alt="" class="img-list">
+                <img src="{{ $list->thumb }}" alt="" class="img-list">
+
         </a>
+        @endforeach
+
     </div>
 </div>
